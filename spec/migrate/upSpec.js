@@ -1,3 +1,4 @@
+'use strict'
 let db = require('../support/db')
 let command = require('../support/command')
 
