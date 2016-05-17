@@ -1,6 +1,5 @@
 let db = require('../support/db')
 let command = require('../support/command')
-// let co = require('co')
 
 describe('up migrate command', () => {
   let dbName, client
@@ -39,5 +38,21 @@ describe('up migrate command', () => {
     .catch((err) => done.fail(err))
     .then(() => done())
   })
-  it('does not run migrations that have already been run')
+
+  it('does not run migrations that have already been run', (done) => {
+    client = db.client(dbName)
+    client.fakeMigrationComplete('1463088284789-first')
+    .then(() => command.run({
+      args: 'migrate up',
+      dbName,
+      fixture: 'simple'
+    }))
+    .then(() => client.failQuery('select * from first'))
+    .then(() => client.query('select * from second'))
+    .then(() => client.query('select * from third'))
+    .then(closeDb)
+    .catch(err => { closeDb(); throw err })
+    .catch((err) => done.fail(err))
+    .then(() => done())
+  })
 })

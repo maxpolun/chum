@@ -45,11 +45,29 @@ class DbClient {
     return this._conn.query(q)
   }
 
+  failQuery (q) {
+    return this.query(q)
+      .then(() => { throw new Error(`Expected query ${q} to fail`) },
+            () => null)
+  }
+
   migrationHasRun (migration) {
     return this._conn.query('SELECT * FROM chum_migrations WHERE complete_migrations = $1', [migration])
     .then(results => {
       if (results.length !== 1) throw new Error('expected one row')
     })
+  }
+
+  initMigrationTable () {
+    return this._conn.query(`CREATE TABLE IF NOT EXISTS chum_migrations (
+      complete_migrations TEXT PRIMARY KEY
+    )`)
+  }
+
+  fakeMigrationComplete (migration) {
+    return this.initMigrationTable().then(() => this._conn.none(`INSERT INTO
+      chum_migrations (complete_migrations)
+      VALUES ($1)`, migration))
   }
 
   close () {
