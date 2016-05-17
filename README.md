@@ -1,6 +1,8 @@
 Chum
 =======
 
+[![Build Status](https://travis-ci.org/maxpolun/chum.svg?branch=master)](https://travis-ci.org/maxpolun/chum)
+
 A simple nodejs migration system for postgres.
 
 ## Features
