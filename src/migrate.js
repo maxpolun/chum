@@ -86,7 +86,12 @@ let commands = {
         if (completeMigrations.indexOf(migration.name) < 0) {
           yield runMigration(t, migration, 'up', config)
           if (config.runCheckScripts && fs.existsSync(migration.check)) {
-            yield runMigration(t, migration, 'check', config)
+            try {
+              yield runMigration(t, migration, 'check', config)
+            } catch (e) {
+              runMigration(t, migration, 'down', config)
+              throw e
+            }
           }
           yield markComplete(t, migration)
         }
