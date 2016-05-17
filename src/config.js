@@ -1,3 +1,4 @@
+'use strict'
 let path = require('path')
 
 module.exports = (argv) => {
@@ -5,7 +6,7 @@ module.exports = (argv) => {
     env: env(argv),
     debug: argv['v'] || process.env.CHUM_DEBUG || false,
     runCheckScripts: !process.env.NO_CHECK,
-    connection () { return getConstring(argv) },
+    connection () { return PgetConstring(argv) },
     basedir: basedir()
   }
 }
