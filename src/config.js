@@ -3,9 +3,9 @@ let path = require('path')
 module.exports = (argv) => {
   return {
     env: env(argv),
-    debug: argv['v'] || process.env.MIGRATE_DEBUG || false,
+    debug: argv['v'] || process.env.CHUM_DEBUG || false,
     runCheckScripts: !process.env.NO_CHECK,
-    connection: getConstring(argv),
+    connection () { return getConstring(argv) },
     basedir: basedir()
   }
 }
@@ -26,7 +26,7 @@ function configFile (argv) {
   if (argv['c'] || argv['config']) {
     return path.resolve(argv['c'] || argv['config'])
   }
-  return basedir() + 'chinook.config.js'
+  return basedir() + 'chum.config.json'
 }
 
 function getConstring (argv) {

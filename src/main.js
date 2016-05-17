@@ -14,6 +14,6 @@ if (command === 'new') {
 } else if (command === 'migrate') {
   migrate(subcommand, getConfig(argv))
 } else {
-  console.error('bad command to chinook:', command)
+  console.error('bad command to chum:', command)
   process.exit(1)
 }

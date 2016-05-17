@@ -3,8 +3,12 @@ let fs = require('fs')
 let path = require('path')
 
 module.exports = function (name, basedir) {
+  if (/^\s*$/.test(name)) {
+    throw new Error('A name is required for all migrations')
+  }
   let dirname = Date.now() + '-' + name
   let dirpath = path.join(basedir, 'migrations', dirname)
+  fs.mkdirSync(path.join(basedir, 'migrations'))
   fs.mkdirSync(dirpath)
 
   function makeFile (name, content) {

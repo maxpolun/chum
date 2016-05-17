@@ -1,8 +1,9 @@
 {
-  "name": "chinook",
-  "version": "2.0.0",
+  "name": "chum",
+  "version": "0.1.0",
   "description": "A simple postgresql migration tool",
   "main": "index.js",
+  "bin": "src/main.js",
   "dependencies": {
     "co": "^4.6.0",
     "minimist": "^1.2.0",
@@ -17,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/maxpolun/chinook.git"
+    "url": "git+https://github.com/maxpolun/chum.git"
   },
   "keywords": [
     "postgresql",
@@ -26,9 +27,9 @@
   "author": "Max Polun <maxpolun@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/maxpolun/chinook/issues"
+    "url": "https://github.com/maxpolun/chum/issues"
   },
-  "homepage": "https://github.com/maxpolun/chinook#readme",
+  "homepage": "https://github.com/maxpolun/chum#readme",
   "standard": {
     "globals": [
       "it",

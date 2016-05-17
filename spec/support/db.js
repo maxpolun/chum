@@ -17,7 +17,7 @@ function randomName () {
   return new Promise((resolve, reject) => {
     crypto.randomBytes(15, (err, buf) => {
       if (err) return reject(err)
-      resolve(`chinook-test-${buf.toString('hex')}`)
+      resolve(`chum-test-${buf.toString('hex')}`)
     })
   })
 }
@@ -38,7 +38,7 @@ module.exports.client = (name) => new DbClient(name)
 
 class DbClient {
   constructor (name) {
-    this._conn = pg('postgres://chinook@localhost/' + name)
+    this._conn = pg('postgres://chum@localhost/' + name)
   }
 
   query (q) {
@@ -46,7 +46,7 @@ class DbClient {
   }
 
   migrationHasRun (migration) {
-    return this._conn.query('SELECT * FROM chinook_migrations WHERE complete_migrations = $1', [migration])
+    return this._conn.query('SELECT * FROM chum_migrations WHERE complete_migrations = $1', [migration])
     .then(results => {
       if (results.length !== 1) throw new Error('expected one row')
     })

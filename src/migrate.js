@@ -5,7 +5,6 @@ let path = require('path')
 let fs = require('fs')
 
 module.exports = (subcommand, config) => {
-  console.log('M', subcommand, config)
   let db = connect(config)
   db.task(function * (t) {
     yield createMigrationsTable(t)
@@ -35,17 +34,17 @@ function listMigrations (basedir) {
 }
 
 function connect (config) {
-  return pg(config.connection)
+  return pg(config.connection())
 }
 
 function createMigrationsTable (db) {
-  return db.query(`CREATE TABLE IF NOT EXISTS chinook_migrations (
+  return db.query(`CREATE TABLE IF NOT EXISTS chum_migrations (
     complete_migrations TEXT PRIMARY KEY
   )`)
 }
 
 function completedMigrations (db) {
-  return db.any('SELECT complete_migrations FROM chinook_migrations ORDER BY complete_migrations DESC')
+  return db.any('SELECT complete_migrations FROM chum_migrations ORDER BY complete_migrations DESC')
   .then((results) => results.map((row) => row.complete_migrations))
 }
 
@@ -58,12 +57,12 @@ function runMigration (db, migration, script, config) {
 
 function markComplete (db, migration) {
   return db.none(`INSERT INTO
-    chinook_migrations (complete_migrations)
+    chum_migrations (complete_migrations)
     VALUES ($[name])`, migration)
 }
 
 function unmarkComplete (db, migration) {
-  return db.none(`DELETE FROM chinook_migrations
+  return db.none(`DELETE FROM chum_migrations
     WHERE complete_migrations = $[name]`, migration)
 }
 

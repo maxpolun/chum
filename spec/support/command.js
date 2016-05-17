@@ -5,7 +5,7 @@ let path = require('path')
 module.exports.run = function (options) {
   return new Promise((resolve, reject) => {
     let fixturePath = path.join(__dirname, '../fixtures', options.fixture)
-    let dbUrl = `postgresql://chinook@localhost/${options.dbName}`
+    let dbUrl = `postgresql://chum@localhost/${options.dbName}`
     let childPath = path.join(__dirname, '../../index.js')
     let cmd = `node ${childPath} ${options.args}`
     exec(cmd, {
