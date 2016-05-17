@@ -1,0 +1,43 @@
+{
+  "name": "chinook",
+  "version": "2.0.0",
+  "description": "A simple postgresql migration tool",
+  "main": "index.js",
+  "dependencies": {
+    "co": "^4.6.0",
+    "minimist": "^1.2.0",
+    "pg-promise": "^3.7.0"
+  },
+  "devDependencies": {
+    "jasmine": "^2.4.1",
+    "standard": "^7.0.1"
+  },
+  "scripts": {
+    "test": "standard && jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxpolun/chinook.git"
+  },
+  "keywords": [
+    "postgresql",
+    "migration"
+  ],
+  "author": "Max Polun <maxpolun@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxpolun/chinook/issues"
+  },
+  "homepage": "https://github.com/maxpolun/chinook#readme",
+  "standard": {
+    "globals": [
+      "it",
+      "fit",
+      "expect",
+      "describe",
+      "beforeEach",
+      "afterEach",
+      "jasmine"
+    ]
+  }
+}

@@ -1,0 +1,3 @@
+describe('down migrate command', () => {
+
+})
