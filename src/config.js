@@ -6,7 +6,7 @@ module.exports = (argv) => {
     env: env(argv),
     debug: argv['v'] || process.env.CHUM_DEBUG || false,
     runCheckScripts: !process.env.NO_CHECK,
-    connection () { return PgetConstring(argv) },
+    connection () { return getConstring(argv) },
     basedir: basedir()
   }
 }
