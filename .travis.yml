@@ -8,3 +8,6 @@ services:
   - postgresql
 before_script:
   - createuser chum -s
+cache:
+  directories:
+    - node_modules
