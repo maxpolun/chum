@@ -89,7 +89,7 @@ let commands = {
             try {
               yield runMigration(t, migration, 'check', config)
             } catch (e) {
-              runMigration(t, migration, 'down', config)
+              yield runMigration(t, migration, 'down', config)
               throw e
             }
           }
