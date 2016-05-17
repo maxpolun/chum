@@ -52,10 +52,7 @@ class DbClient {
   }
 
   migrationHasRun (migration) {
-    return this._conn.query('SELECT * FROM chum_migrations WHERE complete_migrations = $1', [migration])
-    .then(results => {
-      if (results.length !== 1) throw new Error('expected one row')
-    })
+    return this._conn.one('SELECT * FROM chum_migrations WHERE complete_migrations = $1', [migration])
   }
 
   migrationHasNotRun (migration) {
