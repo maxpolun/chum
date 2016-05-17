@@ -58,6 +58,12 @@ class DbClient {
     })
   }
 
+  migrationHasNotRun (migration) {
+    return this.migrationHasRun(migration)
+      .then(() => { throw new Error(`expected migration ${migration} not to run`) },
+            () => null)
+  }
+
   initMigrationTable () {
     return this._conn.query(`CREATE TABLE IF NOT EXISTS chum_migrations (
       complete_migrations TEXT PRIMARY KEY
