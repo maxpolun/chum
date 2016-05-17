@@ -7,7 +7,7 @@ module.exports.run = function (options) {
     let fixturePath = path.join(__dirname, '../fixtures', options.fixture)
     let dbUrl = `postgresql://chum@localhost/${options.dbName}`
     let childPath = path.join(__dirname, '../../index.js')
-    let cmd = `node ${childPath} ${options.args}`
+    let cmd = `${process.execPath} ${childPath} ${options.args}`
     exec(cmd, {
       cwd: fixturePath,
       env: {
