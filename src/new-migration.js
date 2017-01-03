@@ -9,9 +9,9 @@ module.exports = function (name, basedir) {
   let dirname = Date.now() + '-' + name
   let dirpath = path.join(basedir, 'migrations', dirname)
 
-  let migrations_dir = path.join(basedir, 'migrations')
-  if (!fs.accessSync(migrations_dir) {
-    fs.mkdirSync(migrations_dir)
+  let migrationsDir = path.join(basedir, 'migrations')
+  if (!fs.accessSync(migrationsDir)) {
+    fs.mkdirSync(migrationsDir)
   }
   fs.mkdirSync(dirpath)
 
