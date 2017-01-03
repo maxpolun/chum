@@ -1,4 +1,6 @@
+#!/usr/bin/env node
 'use strict'
+
 let minimist = require('minimist')
 let migrate = require('./migrate')
 let newMigration = require('./new-migration')

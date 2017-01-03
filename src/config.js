@@ -27,7 +27,7 @@ function configFile (argv) {
   if (argv['c'] || argv['config']) {
     return path.resolve(argv['c'] || argv['config'])
   }
-  return basedir() + 'chum.config.json'
+  return path.join(basedir(), 'chum.config.json')
 }
 
 function getConstring (argv) {
