@@ -10,8 +10,10 @@ module.exports = function (name, basedir) {
   let dirpath = path.join(basedir, 'migrations', dirname)
 
   let migrationsDir = path.join(basedir, 'migrations')
-  if (!fs.accessSync(migrationsDir)) {
+  try {
     fs.mkdirSync(migrationsDir)
+  } catch (e) {
+    // ignore errors here
   }
   fs.mkdirSync(dirpath)
 
