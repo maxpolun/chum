@@ -44,8 +44,7 @@ function createMigrationsTable (db) {
 }
 
 function completedMigrations (db) {
-  return db.any('SELECT complete_migrations FROM chum_migrations ORDER BY complete_migrations DESC')
-  .then((results) => results.map((row) => row.complete_migrations))
+  return db.map('SELECT complete_migrations FROM chum_migrations ORDER BY complete_migrations DESC', [], row => row.complete_migrations)
 }
 
 function runMigration (db, migration, script, config) {
