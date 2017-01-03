@@ -7,7 +7,7 @@
   "dependencies": {
     "co": "^4.6.0",
     "minimist": "^1.2.0",
-    "pg-promise": "^3.7.0"
+    "pg-promise": "^5.5.0"
   },
   "devDependencies": {
     "jasmine": "^2.4.1",
