@@ -1,6 +1,6 @@
 {
   "name": "chum",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple postgresql migration tool",
   "main": "index.js",
   "bin": "src/main.js",
