@@ -48,7 +48,7 @@ class DbClient {
   failQuery (q) {
     return this.query(q)
       .then(() => { throw new Error(`Expected query ${q} to fail`) },
-            () => null)
+        () => null)
   }
 
   migrationHasRun (migration) {
@@ -58,7 +58,7 @@ class DbClient {
   migrationHasNotRun (migration) {
     return this.migrationHasRun(migration)
       .then(() => { throw new Error(`expected migration ${migration} not to run`) },
-            () => null)
+        () => null)
   }
 
   initMigrationTable () {

@@ -6,7 +6,7 @@ describe('down migrate command', () => {
   let dbName, client
   beforeEach((done) => {
     db.create().then(name => { dbName = name })
-    .then(done, done.fail)
+      .then(done, done.fail)
   })
 
   afterEach((done) => {
@@ -25,23 +25,23 @@ describe('down migrate command', () => {
       dbName,
       fixture: 'simple'
     })
-    .then(() => command.run({
-      args: 'migrate down',
-      dbName,
-      fixture: 'simple'
-    }))
-    .then(() => {
-      client = db.client(dbName)
-      return client.migrationHasRun('1463088284789-first')
-        .then(() => client.migrationHasRun('1463088284790-second'))
-        .then(() => client.migrationHasNotRun('1463088284791-third'))
-        .then(() => client.query('select * from first'))
-        .then(() => client.query('select * from second'))
-        .then(() => client.failQuery('select * from third'))
-    })
-    .then(closeDb)
-    .catch(err => { closeDb(); throw err })
-    .catch((err) => done.fail(err))
-    .then(() => done())
+      .then(() => command.run({
+        args: 'migrate down',
+        dbName,
+        fixture: 'simple'
+      }))
+      .then(() => {
+        client = db.client(dbName)
+        return client.migrationHasRun('1463088284789-first')
+          .then(() => client.migrationHasRun('1463088284790-second'))
+          .then(() => client.migrationHasNotRun('1463088284791-third'))
+          .then(() => client.query('select * from first'))
+          .then(() => client.query('select * from second'))
+          .then(() => client.failQuery('select * from third'))
+      })
+      .then(closeDb)
+      .catch(err => { closeDb(); throw err })
+      .catch((err) => done.fail(err))
+      .then(() => done())
   })
 })

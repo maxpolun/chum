@@ -32,4 +32,3 @@ module.exports = function (name, basedir) {
   makeFile('check.sql', `-- ${dirname}/check.sql
 -- optionally check your migration`)
 }
-

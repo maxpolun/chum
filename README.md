@@ -1,5 +1,4 @@
-Chum
-=======
+# Chum
 
 [![Build Status](https://travis-ci.org/maxpolun/chum.svg?branch=master)](https://travis-ci.org/maxpolun/chum)
 

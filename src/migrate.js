@@ -13,11 +13,11 @@ module.exports = (subcommand, config) => {
     if (config.debug) console.log('migrations', migrations)
     yield commands[subcommand](migrations, current, t, config)
   })
-  .catch((err) => {
-    console.error('DB ERROR', err)
-    process.exit(1)
-  })
-  .then(() => pg.end())
+    .catch((err) => {
+      console.error('DB ERROR', err)
+      process.exit(1)
+    })
+    .then(() => pg.end())
 }
 
 function listMigrations (basedir) {

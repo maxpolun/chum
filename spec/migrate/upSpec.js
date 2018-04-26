@@ -6,7 +6,7 @@ describe('up migrate command', () => {
   let dbName, client
   beforeEach((done) => {
     db.create().then(name => { dbName = name })
-    .then(done, done.fail)
+      .then(done, done.fail)
   })
 
   afterEach((done) => {
@@ -25,35 +25,35 @@ describe('up migrate command', () => {
       dbName,
       fixture: 'simple'
     })
-    .then(() => {
-      client = db.client(dbName)
-      return client.migrationHasRun('1463088284789-first')
-        .then(() => client.migrationHasRun('1463088284790-second'))
-        .then(() => client.migrationHasRun('1463088284791-third'))
-        .then(() => client.query('select * from first'))
-        .then(() => client.query('select * from second'))
-        .then(() => client.query('select * from third'))
-    })
-    .then(closeDb)
-    .catch(err => { closeDb(); throw err })
-    .catch((err) => done.fail(err))
-    .then(() => done())
+      .then(() => {
+        client = db.client(dbName)
+        return client.migrationHasRun('1463088284789-first')
+          .then(() => client.migrationHasRun('1463088284790-second'))
+          .then(() => client.migrationHasRun('1463088284791-third'))
+          .then(() => client.query('select * from first'))
+          .then(() => client.query('select * from second'))
+          .then(() => client.query('select * from third'))
+      })
+      .then(closeDb)
+      .catch(err => { closeDb(); throw err })
+      .catch((err) => done.fail(err))
+      .then(() => done())
   })
 
   it('does not run migrations that have already been run', (done) => {
     client = db.client(dbName)
     client.fakeMigrationComplete('1463088284789-first')
-    .then(() => command.run({
-      args: 'migrate up',
-      dbName,
-      fixture: 'simple'
-    }))
-    .then(() => client.failQuery('select * from first'))
-    .then(() => client.query('select * from second'))
-    .then(() => client.query('select * from third'))
-    .then(closeDb)
-    .catch(err => { closeDb(); throw err })
-    .catch((err) => done.fail(err))
-    .then(() => done())
+      .then(() => command.run({
+        args: 'migrate up',
+        dbName,
+        fixture: 'simple'
+      }))
+      .then(() => client.failQuery('select * from first'))
+      .then(() => client.query('select * from second'))
+      .then(() => client.query('select * from third'))
+      .then(closeDb)
+      .catch(err => { closeDb(); throw err })
+      .catch((err) => done.fail(err))
+      .then(() => done())
   })
 })
